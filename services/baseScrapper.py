@@ -25,7 +25,7 @@ class BaseScrapper(object):
     def __isAlreadyInCache(self, productId: int):
         pass
 
-    def _insertProductInDB(self, title: str, image: str, price: str):
+    def __insertProductInDB(self, title: str, image: str, price: str):
         
 
     def scrapeProductData(self):
