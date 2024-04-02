@@ -30,6 +30,6 @@ class BaseScrapper(object):
         for productLiSoup in soupLiProducts:
             image = productLiSoup.findAll('img', attrs={'class': 'size-woocommerce_thumbnail'})[0].attrs['data-lazy-src']
             title = productLiSoup.findAll('h2', attrs={'class': 'woo-loop-product__title'})[0].find('a').text
-            
+            price = productLiSoup.findAll('span', attrs={'class': 'woocommerce-Price-amount'})[0].find('bdi').text
 
 BaseScrapper(1).scrapeProductData()
