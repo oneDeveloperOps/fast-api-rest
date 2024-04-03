@@ -1,7 +1,6 @@
 from sqlalchemy import create_engine
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker
-db_uri = 'sqlite:///db.sqlite'
 
 SQLALCHAMY_DATABASE_URL = 'sqlite:///./product.db'
 
@@ -15,10 +14,3 @@ Base = declarative_base()
 def getConnection():
     conn = engine.connect()
     return conn
-
-def getDb():
-    db = SessionLocal()
-    try:
-        yield db
-    finally:
-        db.close()

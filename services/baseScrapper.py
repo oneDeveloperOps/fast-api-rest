@@ -1,7 +1,7 @@
 import requests
 from bs4 import BeautifulSoup
 
-from memcachedService import MemcachedService
+from .memcachedService import MemcachedService
 import sys
 sys.path.append('../fast-api-rest')
 from models import product
@@ -9,7 +9,7 @@ from database import connection
 from sqlalchemy import text
 
 class BaseScrapper(object):
-    def __init__(self, page: int, scrapeId: int) -> None:
+    def __init__(self, page: int, scrapeId: str) -> None:
         self.__page = page
         self.__scrapeId = scrapeId
         self.__db = connection.getConnection()
