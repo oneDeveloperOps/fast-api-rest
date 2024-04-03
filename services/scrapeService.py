@@ -21,5 +21,7 @@ class ScrapeService():
                     Retry(BaseScrapper(i, scrape_id).scrapeProductData, SLEEP, RETRY_COUNT)
             return scrape_id
         except:
-            raise Exception("Someting went wrong!") 
+            raise Exception("Someting went wrong!")
 
+    def fetchScrapeData(self, scrapeId):
+        return BaseScrapper(None, scrapeId).fetchScrapedData()

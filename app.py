@@ -14,5 +14,7 @@ def startScraping(no_of_pages: int):
     return { "msg": "To get data of scraped products please use scraped products api with given scrapeId", 'scrape_id': scrapeId }
 
 @app.get("/scraped-products/{scrape_id}")
-def fetchScrapedProducts(scrape_id: int):
-    return { 'scrape_id': scrape_id }
+def fetchScrapedProducts(scrape_id: str):
+    print(scrape_id)
+    scrapedData = scrapeService.ScrapeService(0).fetchScrapeData(scrape_id)
+    return { 'data': scrapedData }

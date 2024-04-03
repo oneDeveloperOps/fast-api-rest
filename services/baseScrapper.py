@@ -51,6 +51,26 @@ class BaseScrapper(object):
         })
         
         trans.commit()
+    
+    def __fetchScrapedData(self):
+
+        trans = self.__db.begin()
+
+        scrapeData = self.__db.execute(text('SELECT * FROM products where scrape_id = :scrape_id'), {
+            "scrape_id": self.__scrapeId,
+        }).fetchall()
+
+        trans.commit()
+
+        data = []
+
+        for row in scrapeData:
+            try:
+                data.append(row._mapping.items())
+            except:
+                print("exception")
+
+        return data
 
     def scrapeProductData(self):
         # feching data and extracting the same
@@ -63,3 +83,7 @@ class BaseScrapper(object):
             title = productLiSoup.findAll('h2', attrs={'class': 'woo-loop-product__title'})[0].find('a').text
             price = productLiSoup.findAll('span', attrs={'class': 'woocommerce-Price-amount'})[0].find('bdi').text
             self.__insertProductInDB(title, image, price)
+
+    def fetchScrapedData(self):
+        # feching data and extracting the same
+        return self.__fetchScrapedData()
